@@ -23,18 +23,20 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="max-w-[400px] mx-auto mt-10 rounded-3xl shadow-xl bg-violet-500">
+      <div className="min-h-screen w-full flex flex-col bg-violet-500">
         <Header />
-        <Routes>
-          <Route path="/" element={
-            <>
-              <Middle todos={todos} setTodos={setTodos} inputValue={inputValue} setInputValue={setInputValue} />
-              <List todos={todos} setTodos={setTodos} />
-            </>
-          } />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
+        <div className="flex-1 flex flex-col items-center justify-start">
+          <Routes>
+            <Route path="/" element={
+              <>
+                <Middle todos={todos} setTodos={setTodos} inputValue={inputValue} setInputValue={setInputValue} />
+                <List todos={todos} setTodos={setTodos} />
+              </>
+            } />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </div>
       </div>
     </BrowserRouter>
   );
