@@ -1,7 +1,6 @@
 import './App.css'; 
 import Header from './header'; 
-import React from 'react';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Middle from './add'; // Importing the AddingTodos component
 import List from './list'; // Importing the ListTodos component
 import { BrowserRouter, Route, Routes } from 'react-router-dom'; // Importing BrowserRouter, Route, and Routes for routing
@@ -11,7 +10,15 @@ import Contact from './pages/Contact'; // Importing the Contact component
  
 function App() {
 
-  const [todos, setTodos] = useState([]);
+  // Load todos from localStorage on first render
+  const [todos, setTodos] = useState(() => {
+    const saved = localStorage.getItem('todos');
+    return saved ? JSON.parse(saved) : [];
+  });
+  // Save todos to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
   const [inputValue, setInputValue] = useState('');
 
   return (
